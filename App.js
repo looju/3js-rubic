@@ -14,12 +14,23 @@ const App = () => {
       0.1,
       1000
     );
+
+    gl.canvas = {
+      width: gl.drawingBufferWidth,
+      height: gl.drawingBufferHeight,
+    };
+
+    const renderer = new Renderer({ gl });
+    renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
+
+    const render = () => {
+      requestAnimationFrame(render);
+      renderer.render(scene, camera);
+      gl.endFrameEXP()
+    };
+
+    render();
   };
-
-  gl.canvas = { width: gl.drawingBufferWidth, height: gl.drawingBufferHeight };
-
-  const renderer = new Renderer({ gl });
-  renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
 
   return (
     <View>
