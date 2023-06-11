@@ -36,8 +36,12 @@ const App = () => {
 
     const cube = new Mesh(geometry, material);
 
+    scene.add(cube);
+
     const render = () => {
       requestAnimationFrame(render);
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
       renderer.render(scene, camera);
       gl.endFrameEXP();
     };
