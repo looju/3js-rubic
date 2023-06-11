@@ -25,6 +25,7 @@ const App = () => {
       width: gl.drawingBufferWidth,
       height: gl.drawingBufferHeight,
     };
+    camera.position.z = 2;
 
     const renderer = new Renderer({ gl });
     renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
@@ -51,7 +52,7 @@ const App = () => {
 
   return (
     <View>
-      <GLView onContextCreate={() => onContextCreate()} />
+      <GLView onContextCreate={() => onContextCreate()} style={styles.gl} />
     </View>
   );
 };
@@ -62,6 +63,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  gl: {
+    width: 500,
+    height: 500,
   },
 });
 
