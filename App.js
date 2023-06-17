@@ -12,7 +12,7 @@ import ExpoTHREE, { Renderer } from "expo-three";
 import { ExpoWebGLRenderingContext, GLView } from "expo-gl";
 
 const App = () => {
-  const onContextCreate = async () => {
+  const onContextCreate = async (gl) => {
     const scene = new Scene();
     const camera = new PerspectiveCamera(
       75,
@@ -25,7 +25,7 @@ const App = () => {
       width: gl.drawingBufferWidth,
       height: gl.drawingBufferHeight,
     };
-    camera.position.z = 2;
+    camera.position.z = 5;
 
     const renderer = new Renderer({ gl });
     renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
@@ -52,7 +52,7 @@ const App = () => {
 
   return (
     <View>
-      <GLView onContextCreate={() => onContextCreate()} style={styles.gl} />
+      <GLView onContextCreate={onContextCreate} style={styles.gl} />
     </View>
   );
 };
