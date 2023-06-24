@@ -1,25 +1,31 @@
 import React, { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
-import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber/native";
+import { View } from "react-native";
+import { PerspectiveCamera, CameraControls,Environment,OrbitControls } from "@react-three/drei";
 
 function CarShow() {
-  <>
-    <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
-    <PerspectiveCamera makeDefault position={[3, 2, 5]} frames={50} />
-    <mesh>
-      <boxGeometry args={[1,1,1]}/>
-      <meshBasicMaterial color={"red"}/>
+  return (
+    <>
+      <Environment/>
+      <ambientLight intensity={0.5} />
+      <directionalLight color="red" position={[0, 0, 5]} />
+      <mesh rotation={[1, 3, 2]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color={"red"} />
       </mesh>
-  </>;
+    </>
+  );
 }
 
 function App() {
   return (
-    <Suspense fallback={null}>
-      <Canvas shadows>
-        <CarShow />
-      </Canvas>
-    </Suspense>
+    <View style={{ flex: 1 }}>
+        <Canvas shadows>
+        <Suspense fallback={null}>
+          <CarShow />
+          </Suspense>
+        </Canvas>
+    </View>
   );
 }
 
